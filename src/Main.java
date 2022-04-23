@@ -2,97 +2,39 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        //Задание 1
-        Scanner in = new Scanner(System.in);
-        System.out.print("Введите тип ОС на телефоне, 0 или 1: ");
-        int clientOS = in.nextInt();
-        boolean isOSAndroid = clientOS == 1;
-        if (isOSAndroid) {
-            System.out.println("Установите версию приложения для Android по ссылке");
+//Задача 6
+        int age = 19, salary = 58_000, limit;
+        if (age >= 23) {
+            limit = salary * 3;
         } else {
-            System.out.println("Установите версию приложения для iOS по ссылке");
+            limit = salary * 2;
         }
+        if (salary >= 50_000 && salary < 80_000) {
+            limit *= 1.2;
+        } else if (salary >= 80_000) {
+            limit *= 1.5;
+        }
+        System.out.println("Мы готовы выдать вам кредитную карту с лимитом " + limit + " рублей");
 
-        //Задание 2
-        System.out.print("Введите год выпуска ОС на телефоне: ");
-        int clientDeviceYear = in.nextInt();
-        boolean isOldOS = clientDeviceYear < 2015;
-        if (isOSAndroid && isOldOS) {
-            System.out.println("Установите облегченную версию приложения для Android по ссылке");
-        } else if (!isOSAndroid && isOldOS) {
-            System.out.println("Установите облегченную версию приложения для iOS по ссылке");
-        } else if (isOSAndroid) {
-            System.out.println("Установите версию приложения для Android по ссылке");
-        } else {
-            System.out.println("Установите версию приложения для iOS по ссылке");
+//Задача 7
+        age = 25;
+        salary = 60_000;
+        int wantedSum = 330_000;
+        double maxPay, payment, rate = 0.1;
+        String permit = "Одобрено";
+        if (age < 23) {
+            rate += 0.01;
+        } else if (age < 30) {
+            rate += 0.005;
         }
-
-        //Задание 3
-        System.out.print("Введите год: ");
-        int year = in.nextInt();
-        boolean isYearLeap = (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
-        if (isYearLeap) {
-            System.out.println(year + " год является високосным");
-        }   else {
-            System.out.println(year + " год не является високосным");
+        if (salary > 80_000) {
+            rate -= 0.007;
         }
-
-        //Задание 4
-        System.out.print("Введите дистанцию до клиента в км: ");
-        int deliveryDistance  = in.nextInt();
-        int day = 1;
-        if (deliveryDistance >= 20 && deliveryDistance < 60) {
-            day += 1;
-        } else if (deliveryDistance >= 60 && deliveryDistance < 100) {
-            day += 2;
-        } else if (deliveryDistance >= 100) {
-            day += 3;
+        maxPay = salary * 0.5;
+        payment = wantedSum * (1 + rate) / 12;
+        if (maxPay < payment) {
+            permit = "Отказано";
         }
-        System.out.println("Потребуется дней: " + day);
-
-        //Задание 5
-        System.out.print("Введите номер месяца: ");
-        int monthNumber  = in.nextInt();
-        in.close();
-        switch (monthNumber) {
-            case 1:
-                System.out.println(monthNumber + "-й месяц (он же январь) принадлежит к сезону зима.");
-                break;
-            case 2:
-                System.out.println(monthNumber + "-й месяц (он же февраль) принадлежит к сезону зима.");
-                break;
-            case 3:
-                System.out.println(monthNumber + "-й месяц (он же март) принадлежит к сезону весна.");
-                break;
-            case 4:
-                System.out.println(monthNumber + "-й месяц (он же апрель) принадлежит к сезону весна.");
-                break;
-            case 5:
-                System.out.println(monthNumber + "-й месяц (он же май) принадлежит к сезону весна.");
-                break;
-            case 6:
-                System.out.println(monthNumber + "-й месяц (он же июнь) принадлежит к сезону лето.");
-                break;
-            case 7:
-                System.out.println(monthNumber + "-й месяц (он же июль) принадлежит к сезону лето.");
-                break;
-            case 8:
-                System.out.println(monthNumber + "-й месяц (он же август) принадлежит к сезону лето.");
-                break;
-            case 9:
-                System.out.println(monthNumber + "-й месяц (он же сентябрь) принадлежит к сезону осень.");
-                break;
-            case 10:
-                System.out.println(monthNumber + "-й месяц (он же октябрь) принадлежит к сезону осень.");
-                break;
-            case 11:
-                System.out.println(monthNumber + "-й месяц (он же ноябрь) принадлежит к сезону осень.");
-                break;
-            case 12:
-                System.out.println(monthNumber + "-й месяц (он же декабрь) принадлежит к сезону зима.");
-                break;
-            default:
-                System.out.println("Такого месяца не существует.");
-        }
+        System.out.println ("Максимальный платеж при ЗП " + salary + " равен " + maxPay + " рублей. Платеж по кредиту "  + payment + " рублей. " + permit);
     }
 }
